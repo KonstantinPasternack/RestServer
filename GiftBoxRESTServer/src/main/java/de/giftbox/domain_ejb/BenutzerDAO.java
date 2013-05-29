@@ -9,20 +9,20 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * Home object for domain model class Bewertungen.
- * @see de.giftbox.domain_ejb.Bewertungen
+ * Home object for domain model class Benutzer.
+ * @see de.giftbox.domain_ejb.Benutzer
  * @author Hibernate Tools
  */
 @Stateless
-public class BewertungenHome {
+public class BenutzerDAO {
 
-	private static final Log log = LogFactory.getLog(BewertungenHome.class);
+	private static final Log log = LogFactory.getLog(BenutzerDAO.class);
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public void persist(Bewertungen transientInstance) {
-		log.debug("persisting Bewertungen instance");
+	public void persist(Benutzer transientInstance) {
+		log.debug("persisting Benutzer instance");
 		try {
 			entityManager.persist(transientInstance);
 			log.debug("persist successful");
@@ -32,8 +32,8 @@ public class BewertungenHome {
 		}
 	}
 
-	public void remove(Bewertungen persistentInstance) {
-		log.debug("removing Bewertungen instance");
+	public void remove(Benutzer persistentInstance) {
+		log.debug("removing Benutzer instance");
 		try {
 			entityManager.remove(persistentInstance);
 			log.debug("remove successful");
@@ -43,10 +43,10 @@ public class BewertungenHome {
 		}
 	}
 
-	public Bewertungen merge(Bewertungen detachedInstance) {
-		log.debug("merging Bewertungen instance");
+	public Benutzer merge(Benutzer detachedInstance) {
+		log.debug("merging Benutzer instance");
 		try {
-			Bewertungen result = entityManager.merge(detachedInstance);
+			Benutzer result = entityManager.merge(detachedInstance);
 			log.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
@@ -55,10 +55,10 @@ public class BewertungenHome {
 		}
 	}
 
-	public Bewertungen findById(Integer id) {
-		log.debug("getting Bewertungen instance with id: " + id);
+	public Benutzer findById(Integer id) {
+		log.debug("getting Benutzer instance with id: " + id);
 		try {
-			Bewertungen instance = entityManager.find(Bewertungen.class, id);
+			Benutzer instance = entityManager.find(Benutzer.class, id);
 			log.debug("get successful");
 			return instance;
 		} catch (RuntimeException re) {

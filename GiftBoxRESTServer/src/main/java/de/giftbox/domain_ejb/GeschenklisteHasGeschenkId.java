@@ -11,6 +11,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class GeschenklisteHasGeschenkId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 3142472406106303976L;
+	
 	private int geschenklisteIdGeschenkliste;
 	private int geschenklisteIdGeschenk;
 	private int geschenklisteIdBenutzer;

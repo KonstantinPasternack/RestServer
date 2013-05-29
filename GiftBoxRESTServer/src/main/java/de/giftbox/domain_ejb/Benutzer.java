@@ -24,15 +24,17 @@ import javax.persistence.Table;
 @Table(name = "benutzer", catalog = "android")
 public class Benutzer implements java.io.Serializable {
 
+	private static final long serialVersionUID = -8744665496994391214L;
+	
 	private Integer idBenutzer;
 	private Geschenkliste geschenkliste;
 	private String username;
 	private String passwort;
 	private String kommentar;
 	private String email;
-	private Set geschenklistes = new HashSet(0);
-	private Set geschenklisteHasGeschenks = new HashSet(0);
-	private Set bewertungens = new HashSet(0);
+	private Set geschenklisten = new HashSet(0);
+	private Set geschenklisteHasGeschenke = new HashSet(0);
+	private Set bewertungen = new HashSet(0);
 
 	public Benutzer() {
 	}
@@ -43,15 +45,15 @@ public class Benutzer implements java.io.Serializable {
 
 	public Benutzer(Geschenkliste geschenkliste, String username,
 			String passwort, String kommentar, String email,
-			Set geschenklistes, Set geschenklisteHasGeschenks, Set bewertungens) {
+			Set geschenklisten, Set geschenklisteHasGeschenke, Set bewertungen) {
 		this.geschenkliste = geschenkliste;
 		this.username = username;
 		this.passwort = passwort;
 		this.kommentar = kommentar;
 		this.email = email;
-		this.geschenklistes = geschenklistes;
-		this.geschenklisteHasGeschenks = geschenklisteHasGeschenks;
-		this.bewertungens = bewertungens;
+		this.geschenklisten = geschenklisten;
+		this.geschenklisteHasGeschenke = geschenklisteHasGeschenke;
+		this.bewertungen = bewertungen;
 	}
 
 	@Id
@@ -113,30 +115,30 @@ public class Benutzer implements java.io.Serializable {
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "benutzer_has_geschenkliste", catalog = "android", joinColumns = { @JoinColumn(name = "idBenutzer", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "id_Geschenkliste", nullable = false, updatable = false) })
-	public Set getGeschenklistes() {
-		return this.geschenklistes;
+	public Set getGeschenklisten() {
+		return this.geschenklisten;
 	}
 
-	public void setGeschenklistes(Set geschenklistes) {
-		this.geschenklistes = geschenklistes;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "benutzer")
-	public Set getGeschenklisteHasGeschenks() {
-		return this.geschenklisteHasGeschenks;
-	}
-
-	public void setGeschenklisteHasGeschenks(Set geschenklisteHasGeschenks) {
-		this.geschenklisteHasGeschenks = geschenklisteHasGeschenks;
+	public void setGeschenklisten(Set geschenklisten) {
+		this.geschenklisten = geschenklisten;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "benutzer")
-	public Set getBewertungens() {
-		return this.bewertungens;
+	public Set getGeschenklisteHasGeschenke() {
+		return this.geschenklisteHasGeschenke;
 	}
 
-	public void setBewertungens(Set bewertungens) {
-		this.bewertungens = bewertungens;
+	public void setGeschenklisteHasGeschenke(Set geschenklisteHasGeschenke) {
+		this.geschenklisteHasGeschenke = geschenklisteHasGeschenke;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "benutzer")
+	public Set getBewertungen() {
+		return this.bewertungen;
+	}
+
+	public void setBewertungen(Set bewertungen) {
+		this.bewertungen = bewertungen;
 	}
 
 }

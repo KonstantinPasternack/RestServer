@@ -9,20 +9,20 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * Home object for domain model class Benutzer.
- * @see de.giftbox.domain_ejb.Benutzer
+ * Home object for domain model class Geschenk.
+ * @see de.giftbox.domain_ejb.Geschenk
  * @author Hibernate Tools
  */
 @Stateless
-public class BenutzerHome {
+public class GeschenkDAO {
 
-	private static final Log log = LogFactory.getLog(BenutzerHome.class);
+	private static final Log log = LogFactory.getLog(GeschenkDAO.class);
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public void persist(Benutzer transientInstance) {
-		log.debug("persisting Benutzer instance");
+	public void persist(Geschenk transientInstance) {
+		log.debug("persisting Geschenk instance");
 		try {
 			entityManager.persist(transientInstance);
 			log.debug("persist successful");
@@ -32,8 +32,8 @@ public class BenutzerHome {
 		}
 	}
 
-	public void remove(Benutzer persistentInstance) {
-		log.debug("removing Benutzer instance");
+	public void remove(Geschenk persistentInstance) {
+		log.debug("removing Geschenk instance");
 		try {
 			entityManager.remove(persistentInstance);
 			log.debug("remove successful");
@@ -43,10 +43,10 @@ public class BenutzerHome {
 		}
 	}
 
-	public Benutzer merge(Benutzer detachedInstance) {
-		log.debug("merging Benutzer instance");
+	public Geschenk merge(Geschenk detachedInstance) {
+		log.debug("merging Geschenk instance");
 		try {
-			Benutzer result = entityManager.merge(detachedInstance);
+			Geschenk result = entityManager.merge(detachedInstance);
 			log.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
@@ -55,10 +55,10 @@ public class BenutzerHome {
 		}
 	}
 
-	public Benutzer findById(Integer id) {
-		log.debug("getting Benutzer instance with id: " + id);
+	public Geschenk findById(Integer id) {
+		log.debug("getting Geschenk instance with id: " + id);
 		try {
-			Benutzer instance = entityManager.find(Benutzer.class, id);
+			Geschenk instance = entityManager.find(Geschenk.class, id);
 			log.debug("get successful");
 			return instance;
 		} catch (RuntimeException re) {

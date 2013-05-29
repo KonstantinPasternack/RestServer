@@ -19,6 +19,8 @@ import javax.persistence.Table;
 @Table(name = "geschenkliste_has_geschenk", catalog = "android")
 public class GeschenklisteHasGeschenk implements java.io.Serializable {
 
+	private static final long serialVersionUID = -6802137821484771009L;
+	
 	private GeschenklisteHasGeschenkId id;
 	private Benutzer benutzer;
 	private Geschenkliste geschenkliste;

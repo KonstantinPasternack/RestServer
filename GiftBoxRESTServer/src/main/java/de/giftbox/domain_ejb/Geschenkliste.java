@@ -20,9 +20,11 @@ import javax.persistence.Table;
 @Table(name = "geschenkliste", catalog = "android")
 public class Geschenkliste implements java.io.Serializable {
 
+	private static final long serialVersionUID = -7356832419380756457L;
+	
 	private int idGeschenkliste;
 	private String name;
-	private Set geschenklisteHasGeschenks = new HashSet(0);
+	private Set geschenklisteHasGeschenke = new HashSet(0);
 	private Geschenk geschenk;
 	private Set benutzers = new HashSet(0);
 	private Set benutzers_1 = new HashSet(0);
@@ -36,11 +38,11 @@ public class Geschenkliste implements java.io.Serializable {
 	}
 
 	public Geschenkliste(int idGeschenkliste, String name,
-			Set geschenklisteHasGeschenks, Geschenk geschenk, Set benutzers,
+			Set geschenklisteHasGeschenke, Geschenk geschenk, Set benutzers,
 			Set benutzers_1) {
 		this.idGeschenkliste = idGeschenkliste;
 		this.name = name;
-		this.geschenklisteHasGeschenks = geschenklisteHasGeschenks;
+		this.geschenklisteHasGeschenke = geschenklisteHasGeschenke;
 		this.geschenk = geschenk;
 		this.benutzers = benutzers;
 		this.benutzers_1 = benutzers_1;
@@ -66,12 +68,12 @@ public class Geschenkliste implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "geschenkliste")
-	public Set getGeschenklisteHasGeschenks() {
-		return this.geschenklisteHasGeschenks;
+	public Set getGeschenklisteHasGeschenke() {
+		return this.geschenklisteHasGeschenke;
 	}
 
-	public void setGeschenklisteHasGeschenks(Set geschenklisteHasGeschenks) {
-		this.geschenklisteHasGeschenks = geschenklisteHasGeschenks;
+	public void setGeschenklisteHasGeschenke(Set geschenklisteHasGeschenke) {
+		this.geschenklisteHasGeschenke = geschenklisteHasGeschenke;
 	}
 
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "geschenkliste")

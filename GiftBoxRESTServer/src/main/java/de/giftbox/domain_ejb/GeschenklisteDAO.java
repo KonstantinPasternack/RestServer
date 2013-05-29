@@ -9,21 +9,20 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * Home object for domain model class GeschenklisteHasGeschenk.
- * @see de.giftbox.domain_ejb.GeschenklisteHasGeschenk
+ * Home object for domain model class Geschenkliste.
+ * @see de.giftbox.domain_ejb.Geschenkliste
  * @author Hibernate Tools
  */
 @Stateless
-public class GeschenklisteHasGeschenkHome {
+public class GeschenklisteDAO {
 
-	private static final Log log = LogFactory
-			.getLog(GeschenklisteHasGeschenkHome.class);
+	private static final Log log = LogFactory.getLog(GeschenklisteDAO.class);
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public void persist(GeschenklisteHasGeschenk transientInstance) {
-		log.debug("persisting GeschenklisteHasGeschenk instance");
+	public void persist(Geschenkliste transientInstance) {
+		log.debug("persisting Geschenkliste instance");
 		try {
 			entityManager.persist(transientInstance);
 			log.debug("persist successful");
@@ -33,8 +32,8 @@ public class GeschenklisteHasGeschenkHome {
 		}
 	}
 
-	public void remove(GeschenklisteHasGeschenk persistentInstance) {
-		log.debug("removing GeschenklisteHasGeschenk instance");
+	public void remove(Geschenkliste persistentInstance) {
+		log.debug("removing Geschenkliste instance");
 		try {
 			entityManager.remove(persistentInstance);
 			log.debug("remove successful");
@@ -44,12 +43,10 @@ public class GeschenklisteHasGeschenkHome {
 		}
 	}
 
-	public GeschenklisteHasGeschenk merge(
-			GeschenklisteHasGeschenk detachedInstance) {
-		log.debug("merging GeschenklisteHasGeschenk instance");
+	public Geschenkliste merge(Geschenkliste detachedInstance) {
+		log.debug("merging Geschenkliste instance");
 		try {
-			GeschenklisteHasGeschenk result = entityManager
-					.merge(detachedInstance);
+			Geschenkliste result = entityManager.merge(detachedInstance);
 			log.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
@@ -58,11 +55,11 @@ public class GeschenklisteHasGeschenkHome {
 		}
 	}
 
-	public GeschenklisteHasGeschenk findById(GeschenklisteHasGeschenkId id) {
-		log.debug("getting GeschenklisteHasGeschenk instance with id: " + id);
+	public Geschenkliste findById(int id) {
+		log.debug("getting Geschenkliste instance with id: " + id);
 		try {
-			GeschenklisteHasGeschenk instance = entityManager.find(
-					GeschenklisteHasGeschenk.class, id);
+			Geschenkliste instance = entityManager
+					.find(Geschenkliste.class, id);
 			log.debug("get successful");
 			return instance;
 		} catch (RuntimeException re) {

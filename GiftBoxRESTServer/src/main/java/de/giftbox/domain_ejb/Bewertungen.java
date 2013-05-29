@@ -19,6 +19,8 @@ import javax.persistence.Table;
 @Table(name = "bewertungen", catalog = "android")
 public class Bewertungen implements java.io.Serializable {
 
+	private static final long serialVersionUID = -3980207929435754611L;
+
 	private Integer idBewertungen;
 	private Geschenk geschenk;
 	private Benutzer benutzer;

@@ -23,6 +23,8 @@ import org.hibernate.annotations.Parameter;
 @Table(name = "geschenk", catalog = "android")
 public class Geschenk implements java.io.Serializable {
 
+	private static final long serialVersionUID = -2722029944688724337L;
+	
 	private Integer idGeschenk;
 	private Geschenkliste geschenkliste;
 	private String bezeichnung;
@@ -31,8 +33,8 @@ public class Geschenk implements java.io.Serializable {
 	private String ort;
 	private String link;
 	private String kommentar;
-	private Set geschenklisteHasGeschenks = new HashSet(0);
-	private Set bewertungens = new HashSet(0);
+	private Set geschenklisteHasGeschenke = new HashSet(0);
+	private Set bewertungen = new HashSet(0);
 
 	public Geschenk() {
 	}
@@ -44,7 +46,7 @@ public class Geschenk implements java.io.Serializable {
 
 	public Geschenk(Geschenkliste geschenkliste, String bezeichnung,
 			String kategorie, Double preis, String ort, String link,
-			String kommentar, Set geschenklisteHasGeschenks, Set bewertungens) {
+			String kommentar, Set geschenklisteHasGeschenke, Set bewertungen) {
 		this.geschenkliste = geschenkliste;
 		this.bezeichnung = bezeichnung;
 		this.kategorie = kategorie;
@@ -52,8 +54,8 @@ public class Geschenk implements java.io.Serializable {
 		this.ort = ort;
 		this.link = link;
 		this.kommentar = kommentar;
-		this.geschenklisteHasGeschenks = geschenklisteHasGeschenks;
-		this.bewertungens = bewertungens;
+		this.geschenklisteHasGeschenke = geschenklisteHasGeschenke;
+		this.bewertungen = bewertungen;
 	}
 
 	@GenericGenerator(name = "generator", strategy = "foreign", parameters = @Parameter(name = "property", value = "geschenkliste"))
@@ -133,21 +135,21 @@ public class Geschenk implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "geschenk")
-	public Set getGeschenklisteHasGeschenks() {
-		return this.geschenklisteHasGeschenks;
+	public Set getGeschenklisteHasGeschenke() {
+		return this.geschenklisteHasGeschenke;
 	}
 
-	public void setGeschenklisteHasGeschenks(Set geschenklisteHasGeschenks) {
-		this.geschenklisteHasGeschenks = geschenklisteHasGeschenks;
+	public void setGeschenklisteHasGeschenke(Set geschenklisteHasGeschenke) {
+		this.geschenklisteHasGeschenke = geschenklisteHasGeschenke;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "geschenk")
-	public Set getBewertungens() {
-		return this.bewertungens;
+	public Set getBewertungen() {
+		return this.bewertungen;
 	}
 
-	public void setBewertungens(Set bewertungens) {
-		this.bewertungens = bewertungens;
+	public void setBewertungen(Set bewertungen) {
+		this.bewertungen = bewertungen;
 	}
 
 }
