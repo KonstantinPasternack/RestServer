@@ -135,4 +135,107 @@ public class Geschenk implements java.io.Serializable {
 		this.bewertungen = bewertungen;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((bewertungen == null) ? 0 : bewertungen.hashCode());
+		result = prime * result
+				+ ((bezeichnung == null) ? 0 : bezeichnung.hashCode());
+		result = prime
+				* result
+				+ ((geschenklisteHasGeschenke == null) ? 0
+						: geschenklisteHasGeschenke.hashCode());
+		result = prime * result
+				+ ((idGeschenk == null) ? 0 : idGeschenk.hashCode());
+		result = prime * result
+				+ ((kategorie == null) ? 0 : kategorie.hashCode());
+		result = prime * result
+				+ ((kommentar == null) ? 0 : kommentar.hashCode());
+		result = prime * result + ((link == null) ? 0 : link.hashCode());
+		result = prime * result + ((ort == null) ? 0 : ort.hashCode());
+		result = prime * result + ((preis == null) ? 0 : preis.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		Geschenk other = (Geschenk) obj;
+		if (bewertungen == null) {
+			if (other.bewertungen != null) {
+				return false;
+			}
+		} else if (!bewertungen.equals(other.bewertungen)) {
+			return false;
+		}
+		if (bezeichnung == null) {
+			if (other.bezeichnung != null) {
+				return false;
+			}
+		} else if (!bezeichnung.equals(other.bezeichnung)) {
+			return false;
+		}
+		if (geschenklisteHasGeschenke == null) {
+			if (other.geschenklisteHasGeschenke != null) {
+				return false;
+			}
+		} else if (!geschenklisteHasGeschenke
+				.equals(other.geschenklisteHasGeschenke)) {
+			return false;
+		}
+		if (idGeschenk == null) {
+			if (other.idGeschenk != null) {
+				return false;
+			}
+		} else if (!idGeschenk.equals(other.idGeschenk)) {
+			return false;
+		}
+		if (kategorie == null) {
+			if (other.kategorie != null) {
+				return false;
+			}
+		} else if (!kategorie.equals(other.kategorie)) {
+			return false;
+		}
+		if (kommentar == null) {
+			if (other.kommentar != null) {
+				return false;
+			}
+		} else if (!kommentar.equals(other.kommentar)) {
+			return false;
+		}
+		if (link == null) {
+			if (other.link != null) {
+				return false;
+			}
+		} else if (!link.equals(other.link)) {
+			return false;
+		}
+		if (ort == null) {
+			if (other.ort != null) {
+				return false;
+			}
+		} else if (!ort.equals(other.ort)) {
+			return false;
+		}
+		if (preis == null) {
+			if (other.preis != null) {
+				return false;
+			}
+		} else if (!preis.equals(other.preis)) {
+			return false;
+		}
+		return true;
+	}
+
 }

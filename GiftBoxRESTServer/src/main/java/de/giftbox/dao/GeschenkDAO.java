@@ -4,7 +4,11 @@ package de.giftbox.dao;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transaction;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -20,18 +24,30 @@ public class GeschenkDAO {
 
 	private static final Log log = LogFactory.getLog(GeschenkDAO.class);
 
+	EntityManagerFactory emf;
+	
+	
+	
 	@PersistenceContext
 	private EntityManager entityManager;
 
 	public void persist(Geschenk transientInstance) {
+		
+		emf = Persistence.createEntityManagerFactory("JPAPU");
+		entityManager = emf.createEntityManager();
+		EntityTransaction tx = entityManager.getTransaction();
 		log.debug("persisting Geschenk instance");
 		try {
+			
+			tx.begin();
 			entityManager.persist(transientInstance);
+			tx.commit();
 			log.debug("persist successful");
 		} catch (RuntimeException re) {
 			log.error("persist failed", re);
 			throw re;
 		}
+		entityManager.flush();
 	}
 
 	public void remove(Geschenk persistentInstance) {
