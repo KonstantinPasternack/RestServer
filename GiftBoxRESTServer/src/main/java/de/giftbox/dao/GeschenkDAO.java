@@ -1,4 +1,4 @@
-package de.giftbox.domain_ejb;
+package de.giftbox.dao;
 
 // Generated 29.05.2013 11:21:40 by Hibernate Tools 4.0.0
 
@@ -8,21 +8,23 @@ import javax.persistence.PersistenceContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import de.giftbox.domain.Geschenk;
+
 /**
- * Home object for domain model class Bewertungen.
- * @see de.giftbox.domain_ejb.Bewertungen
+ * Home object for domain model class Geschenk.
+ * @see de.giftbox.domain.Geschenk
  * @author Hibernate Tools
  */
 @Stateless
-public class BewertungenDAO {
+public class GeschenkDAO {
 
-	private static final Log log = LogFactory.getLog(BewertungenDAO.class);
+	private static final Log log = LogFactory.getLog(GeschenkDAO.class);
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public void persist(Bewertungen transientInstance) {
-		log.debug("persisting Bewertungen instance");
+	public void persist(Geschenk transientInstance) {
+		log.debug("persisting Geschenk instance");
 		try {
 			entityManager.persist(transientInstance);
 			log.debug("persist successful");
@@ -32,8 +34,8 @@ public class BewertungenDAO {
 		}
 	}
 
-	public void remove(Bewertungen persistentInstance) {
-		log.debug("removing Bewertungen instance");
+	public void remove(Geschenk persistentInstance) {
+		log.debug("removing Geschenk instance");
 		try {
 			entityManager.remove(persistentInstance);
 			log.debug("remove successful");
@@ -43,10 +45,10 @@ public class BewertungenDAO {
 		}
 	}
 
-	public Bewertungen merge(Bewertungen detachedInstance) {
-		log.debug("merging Bewertungen instance");
+	public Geschenk merge(Geschenk detachedInstance) {
+		log.debug("merging Geschenk instance");
 		try {
-			Bewertungen result = entityManager.merge(detachedInstance);
+			Geschenk result = entityManager.merge(detachedInstance);
 			log.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
@@ -55,10 +57,10 @@ public class BewertungenDAO {
 		}
 	}
 
-	public Bewertungen findById(Integer id) {
-		log.debug("getting Bewertungen instance with id: " + id);
+	public Geschenk findById(Integer id) {
+		log.debug("getting Geschenk instance with id: " + id);
 		try {
-			Bewertungen instance = entityManager.find(Bewertungen.class, id);
+			Geschenk instance = entityManager.find(Geschenk.class, id);
 			log.debug("get successful");
 			return instance;
 		} catch (RuntimeException re) {

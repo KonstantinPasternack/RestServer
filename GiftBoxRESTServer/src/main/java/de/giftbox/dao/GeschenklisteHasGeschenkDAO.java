@@ -1,4 +1,4 @@
-package de.giftbox.domain_ejb;
+package de.giftbox.dao;
 
 // Generated 29.05.2013 11:21:40 by Hibernate Tools 4.0.0
 
@@ -8,9 +8,12 @@ import javax.persistence.PersistenceContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import de.giftbox.domain.GeschenklisteHasGeschenk;
+import de.giftbox.domain.GeschenklisteHasGeschenkId;
+
 /**
  * Home object for domain model class GeschenklisteHasGeschenk.
- * @see de.giftbox.domain_ejb.GeschenklisteHasGeschenk
+ * @see de.giftbox.domain.GeschenklisteHasGeschenk
  * @author Hibernate Tools
  */
 @Stateless

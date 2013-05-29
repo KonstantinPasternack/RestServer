@@ -1,4 +1,4 @@
-package de.giftbox.domain_ejb;
+package de.giftbox.domain;
 
 // Generated 29.05.2013 11:21:39 by Hibernate Tools 4.0.0
 
