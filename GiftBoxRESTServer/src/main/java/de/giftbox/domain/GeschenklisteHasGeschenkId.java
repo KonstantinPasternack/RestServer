@@ -1,6 +1,6 @@
 package de.giftbox.domain;
 
-// Generated 29.05.2013 11:21:39 by Hibernate Tools 4.0.0
+// Generated 29.05.2013 13:40:32 by Hibernate Tools 4.0.0
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -10,7 +10,7 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 public class GeschenklisteHasGeschenkId implements java.io.Serializable {
-
+	
 	private static final long serialVersionUID = 3142472406106303976L;
 	
 	private int geschenklisteIdGeschenkliste;

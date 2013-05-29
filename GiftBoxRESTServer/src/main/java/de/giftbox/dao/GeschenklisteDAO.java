@@ -1,6 +1,6 @@
 package de.giftbox.dao;
 
-// Generated 29.05.2013 11:21:40 by Hibernate Tools 4.0.0
+// Generated 29.05.2013 13:40:32 by Hibernate Tools 4.0.0
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
