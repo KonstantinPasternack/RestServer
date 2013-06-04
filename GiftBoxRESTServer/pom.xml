@@ -14,11 +14,11 @@
 			<url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
 		</repository>
 	</repositories>
-	
-			<!-- Shared version number properties -->
-		<properties>
-			<org.springframework.version>3.0.0.RELEASE</org.springframework.version>
-		</properties>
+
+	<!-- Shared version number properties -->
+	<properties>
+		<org.springframework.version>3.0.0.RELEASE</org.springframework.version>
+	</properties>
 
 	<dependencies>
 		<dependency>
