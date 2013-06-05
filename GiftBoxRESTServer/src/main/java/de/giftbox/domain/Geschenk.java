@@ -54,7 +54,7 @@ public class Geschenk implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "idGeschenk", unique = true, nullable = false)
+	@Column(name = "id_Geschenk", unique = true, nullable = false)
 	public Integer getIdGeschenk() {
 		return this.idGeschenk;
 	}

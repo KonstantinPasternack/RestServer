@@ -37,6 +37,10 @@ public class GeschenklisteHasGeschenk implements java.io.Serializable {
 		this.geschenk = geschenk;
 	}
 
+	/*
+	 * hier nichts verändern
+	 * wurde von Hibernate generiert und hat keine Auswirkungen auf die DB
+	 */
 	@EmbeddedId
 	@AttributeOverrides({
 			@AttributeOverride(name = "geschenklisteIdGeschenkliste", column = @Column(name = "Geschenkliste_idGeschenkliste", nullable = false)),

@@ -31,7 +31,7 @@ public class Benutzer implements java.io.Serializable {
 	private String kommentar;
 	private String email;
 	private Set<Geschenkliste> geschenklisten = new HashSet<Geschenkliste>(0);
-	private Set<GeschenklisteHasGeschenk> geschenklisteHasGeschenke = new HashSet<GeschenklisteHasGeschenk>(
+	private Set<GeschenklisteHasGeschenk> geschenklisteHasGeschenk = new HashSet<GeschenklisteHasGeschenk>(
 			0);
 	private Set<Bewertungen> bewertungen = new HashSet<Bewertungen>(0);
 
@@ -44,20 +44,20 @@ public class Benutzer implements java.io.Serializable {
 
 	public Benutzer(String username, String passwort, String kommentar,
 			String email, Set<Geschenkliste> geschenklisten,
-			Set<GeschenklisteHasGeschenk> geschenklisteHasGeschenke,
+			Set<GeschenklisteHasGeschenk> geschenklisteHasGeschenk,
 			Set<Bewertungen> bewertungen) {
 		this.username = username;
 		this.passwort = passwort;
 		this.kommentar = kommentar;
 		this.email = email;
 		this.geschenklisten = geschenklisten;
-		this.geschenklisteHasGeschenke = geschenklisteHasGeschenke;
+		this.geschenklisteHasGeschenk = geschenklisteHasGeschenk;
 		this.bewertungen = bewertungen;
 	}
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "idBenutzer", unique = true, nullable = false)
+	@Column(name = "id_Benutzer", unique = true, nullable = false)
 	public Integer getIdBenutzer() {
 		return this.idBenutzer;
 	}
@@ -103,7 +103,7 @@ public class Benutzer implements java.io.Serializable {
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "benutzer_has_geschenkliste", catalog = "giftbox", joinColumns = { @JoinColumn(name = "idBenutzer", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "id_Geschenkliste", nullable = false, updatable = false) })
+	@JoinTable(name = "benutzer_has_geschenkliste", catalog = "giftbox", joinColumns = { @JoinColumn(name = "id_Benutzer", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "id_Geschenkliste", nullable = false, updatable = false) })
 	public Set<Geschenkliste> getGeschenklisten() {
 		return this.geschenklisten;
 	}
@@ -113,13 +113,13 @@ public class Benutzer implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "benutzer")
-	public Set<GeschenklisteHasGeschenk> getGeschenklisteHasGeschenke() {
-		return this.geschenklisteHasGeschenke;
+	public Set<GeschenklisteHasGeschenk> getGeschenklisteHasGeschenk() {
+		return this.geschenklisteHasGeschenk;
 	}
 
 	public void setGeschenklisteHasGeschenke(
-			Set<GeschenklisteHasGeschenk> geschenklisteHasGeschenke) {
-		this.geschenklisteHasGeschenke = geschenklisteHasGeschenke;
+			Set<GeschenklisteHasGeschenk> geschenklisteHasGeschenk) {
+		this.geschenklisteHasGeschenk = geschenklisteHasGeschenk;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "benutzer")

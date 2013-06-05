@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/mvc"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <!-- http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd -->
-    <!-- http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd" -->
+	<!-- http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd -->
+	<!-- http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd" -->
 	<!-- DispatcherServlet Context: defines this servlet's request-processing 
 		infrastructure -->
 
@@ -32,14 +31,14 @@
 
 	<beans:bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
-		<beans:property name="driverClassName" value="org.mysql.jdbcDriver" />
+		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<beans:property name="url"
-			value="jdbc:mysql//localhost:3306/android" />
+			value="jdbc:mysql://localhost:3306/giftbox" />
 		<beans:property name="username" value="root" />
 		<beans:property name="password" value="" />
 	</beans:bean>
-<!-- org.springframework.orm.hibernate4.LocalSessionFactoryBean -->
-<!-- org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean -->
+	<!-- org.springframework.orm.hibernate4.LocalSessionFactoryBean -->
+	<!-- org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean -->
 	<beans:bean id="mySessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<beans:property name="dataSource" ref="myDataSource" />
@@ -68,21 +67,21 @@
 	<beans:bean id="BenutzerDAO" class="de.giftbox.daoImpl.BenutzerDAOImpl">
 		<beans:property name="sessionFactory" ref="mySessionFactory" />
 	</beans:bean>
-	
+
 	<beans:bean id="BewertungenDAO" class="de.giftbox.daoImpl.BewertungenDAOImpl">
 		<beans:property name="sessionFactory" ref="mySessionFactory" />
 	</beans:bean>
-	
+
 	<beans:bean id="GeschenkDAO" class="de.giftbox.daoImpl.GeschenkDAOImpl">
 		<beans:property name="sessionFactory" ref="mySessionFactory" />
 	</beans:bean>
-	
+
 	<beans:bean id="GeschenklisteDAO" class="de.giftbox.daoImpl.GeschenklisteDAOImpl">
 		<beans:property name="sessionFactory" ref="mySessionFactory" />
 	</beans:bean>
-	
-<!-- 	<beans:bean name="/user/*.htm" class="com.vaannila.web.UserController">
-		<beans:property name="userDAO" ref="myUserDAO" />
-	</beans:bean> -->
+
+	<!-- <beans:bean name="/user/*.htm" class="com.vaannila.web.UserController"> 
+		<beans:property name="userDAO" ref="myUserDAO" /> </beans:bean> -->
+
 
 </beans:beans>

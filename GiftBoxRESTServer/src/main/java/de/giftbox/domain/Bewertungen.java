@@ -37,7 +37,7 @@ public class Bewertungen implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "idBewertungen", unique = true, nullable = false)
+	@Column(name = "id_Bewertungen", unique = true, nullable = false)
 	public Integer getIdBewertungen() {
 		return this.idBewertungen;
 	}
