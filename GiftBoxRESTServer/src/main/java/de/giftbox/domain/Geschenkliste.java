@@ -19,10 +19,12 @@ import javax.persistence.Table;
 @Table(name = "geschenkliste", catalog = "giftbox")
 public class Geschenkliste implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1346437601668258655L;
+	
 	private int idGeschenkliste;
 	private String name;
-	private Set geschenklisteHasGeschenke = new HashSet(0);
-	private Set benutzer = new HashSet(0);
+	private Set<GeschenklisteHasGeschenk> geschenklisteHasGeschenke = new HashSet<GeschenklisteHasGeschenk>(0);
+	private Set<Benutzer> benutzer = new HashSet<Benutzer>(0);
 
 	public Geschenkliste() {
 	}
@@ -33,7 +35,7 @@ public class Geschenkliste implements java.io.Serializable {
 	}
 
 	public Geschenkliste(int idGeschenkliste, String name,
-			Set geschenklisteHasGeschenke, Set benutzer) {
+			Set<GeschenklisteHasGeschenk> geschenklisteHasGeschenke, Set<Benutzer> benutzer) {
 		this.idGeschenkliste = idGeschenkliste;
 		this.name = name;
 		this.geschenklisteHasGeschenke = geschenklisteHasGeschenke;
@@ -60,20 +62,20 @@ public class Geschenkliste implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "geschenkliste")
-	public Set getGeschenklisteHasGeschenke() {
+	public Set<GeschenklisteHasGeschenk> getGeschenklisteHasGeschenke() {
 		return this.geschenklisteHasGeschenke;
 	}
 
-	public void setGeschenklisteHasGeschenke(Set geschenklisteHasGeschenke) {
+	public void setGeschenklisteHasGeschenke(Set<GeschenklisteHasGeschenk> geschenklisteHasGeschenke) {
 		this.geschenklisteHasGeschenke = geschenklisteHasGeschenke;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "geschenklistes")
-	public Set getBenutzer() {
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "geschenklisten")
+	public Set<Benutzer> getBenutzer() {
 		return this.benutzer;
 	}
 
-	public void setBenutzer(Set benutzer) {
+	public void setBenutzer(Set<Benutzer> benutzer) {
 		this.benutzer = benutzer;
 	}
 

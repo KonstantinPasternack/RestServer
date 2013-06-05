@@ -29,8 +29,8 @@ public class Geschenk implements java.io.Serializable {
 	private String ort;
 	private String link;
 	private String kommentar;
-	private Set geschenklisteHasGeschenke = new HashSet(0);
-	private Set bewertungen = new HashSet(0);
+	private Set<GeschenklisteHasGeschenk> geschenklisteHasGeschenke = new HashSet<GeschenklisteHasGeschenk>(0);
+	private Set<Bewertungen> bewertungen = new HashSet<Bewertungen>(0);
 
 	public Geschenk() {
 	}
@@ -41,7 +41,7 @@ public class Geschenk implements java.io.Serializable {
 
 	public Geschenk(String bezeichnung, String kategorie, Double preis,
 			String ort, String link, String kommentar,
-			Set geschenklisteHasGeschenke, Set bewertungen) {
+			Set<GeschenklisteHasGeschenk> geschenklisteHasGeschenke, Set<Bewertungen> bewertungen) {
 		this.bezeichnung = bezeichnung;
 		this.kategorie = kategorie;
 		this.preis = preis;
@@ -118,20 +118,20 @@ public class Geschenk implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "geschenk")
-	public Set getGeschenklisteHasGeschenke() {
+	public Set<GeschenklisteHasGeschenk> getGeschenklisteHasGeschenke() {
 		return this.geschenklisteHasGeschenke;
 	}
 
-	public void setGeschenklisteHasGeschenke(Set geschenklisteHasGeschenke) {
+	public void setGeschenklisteHasGeschenke(Set<GeschenklisteHasGeschenk> geschenklisteHasGeschenke) {
 		this.geschenklisteHasGeschenke = geschenklisteHasGeschenke;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "geschenk")
-	public Set getBewertungen() {
+	public Set<Bewertungen> getBewertungen() {
 		return this.bewertungen;
 	}
 
-	public void setBewertungen(Set bewertungen) {
+	public void setBewertungen(Set<Bewertungen> bewertungen) {
 		this.bewertungen = bewertungen;
 	}
 
