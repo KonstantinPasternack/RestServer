@@ -1,13 +1,14 @@
-package de.giftbox.dao;
+package de.giftbox.daoImpl;
 
 import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
-import de.giftbox.domain.Bewertungen;
+import de.giftbox.dao.BenutzerDAO;
+import de.giftbox.domain.Benutzer;
 
-public class BewertungenDAOImpl implements BewertungenDAO {
+public class BenutzerDAOImpl implements BenutzerDAO {
 
 	private HibernateTemplate hibernateTemplate;
 
@@ -16,13 +17,14 @@ public class BewertungenDAOImpl implements BewertungenDAO {
 	}
 
 	@Override
-	public void saveBewertung(Bewertungen bewertungen) {
-		hibernateTemplate.saveOrUpdate(bewertungen);
+	public void saveBenutzer(Benutzer benutzer) {
+		hibernateTemplate.saveOrUpdate(benutzer);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Bewertungen> listBewertungen() {
-		return hibernateTemplate.find("from Bewertungen");
+	public List<Benutzer> listBenutzer() {
+		return hibernateTemplate.find("from Benutzer");
 	}
+
 }

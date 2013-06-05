@@ -1,10 +1,11 @@
-package de.giftbox.dao;
+package de.giftbox.daoImpl;
 
 import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
+import de.giftbox.dao.GeschenkDAO;
 import de.giftbox.domain.Geschenk;
 
 public class GeschenkDAOImpl implements GeschenkDAO {

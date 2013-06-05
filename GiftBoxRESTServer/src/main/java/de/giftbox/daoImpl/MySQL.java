@@ -1,4 +1,4 @@
-package de.giftbox.dao;
+package de.giftbox.daoImpl;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
