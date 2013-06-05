@@ -117,7 +117,7 @@ public class Benutzer implements java.io.Serializable {
 		return this.geschenklisteHasGeschenk;
 	}
 
-	public void setGeschenklisteHasGeschenke(
+	public void setGeschenklisteHasGeschenk(
 			Set<GeschenklisteHasGeschenk> geschenklisteHasGeschenk) {
 		this.geschenklisteHasGeschenk = geschenklisteHasGeschenk;
 	}
