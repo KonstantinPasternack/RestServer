@@ -20,11 +20,9 @@
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
-	<!-- <beans:bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/WEB-INF/views/" />
-		<beans:property name="suffix" value=".jsp" />
-	</beans:bean> -->
+	<!-- <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
+		<beans:property name="prefix" value="/WEB-INF/views/" /> <beans:property 
+		name="suffix" value=".jsp" /> </beans:bean> -->
 
 	<!-- Imports user-defined @Controller beans that process client requests -->
 	<beans:import resource="controllers.xml" />
@@ -82,6 +80,10 @@
 
 	<beans:bean name="MainController" class="de.giftbox.controller.MainController">
 		<!-- <beans:property name="userDAO" ref="myUserDAO" /> -->
+	</beans:bean>
+
+	<beans:bean name="BenutzerController" class="de.giftbox.controller.BenutzerController">
+		<beans:property name="BenutzerDAO" ref="BenutzerDAO"></beans:property>
 	</beans:bean>
 
 

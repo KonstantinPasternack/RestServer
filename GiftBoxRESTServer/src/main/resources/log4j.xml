@@ -17,19 +17,19 @@
 
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
-		<level value="verbose" />
+		<level value="info" />
 	</logger>
 
 	<logger name="org.springframework.beans">
-		<level value="verbose" />
+		<level value="info" />
 	</logger>
 
 	<logger name="org.springframework.context">
-		<level value="verbose" />
+		<level value="info" />
 	</logger>
 
 	<logger name="org.springframework.web">
-		<level value="verbose" />
+		<level value="info" />
 	</logger>
 
 	<logger name="org.hibernate">
