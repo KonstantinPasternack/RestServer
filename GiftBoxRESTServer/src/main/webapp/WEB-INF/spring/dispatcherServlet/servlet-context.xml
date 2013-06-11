@@ -80,8 +80,9 @@
 		<beans:property name="sessionFactory" ref="mySessionFactory" />
 	</beans:bean>
 
-	<!-- <beans:bean name="/user/*.htm" class="com.vaannila.web.UserController"> 
-		<beans:property name="userDAO" ref="myUserDAO" /> </beans:bean> -->
+	<beans:bean name="MainController" class="de.giftbox.controller.MainController">
+		<!-- <beans:property name="userDAO" ref="myUserDAO" /> -->
+	</beans:bean>
 
 
 </beans:beans>

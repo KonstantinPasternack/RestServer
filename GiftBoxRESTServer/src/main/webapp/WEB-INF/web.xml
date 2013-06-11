@@ -3,15 +3,20 @@
 	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
+	
+    <display-name>giftbox</display-name>
+    
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
             /WEB-INF/spring/root-context.xml
         </param-value>
 	</context-param>
+	
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	
 	<servlet>
 		<servlet-name>dispatcherServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -25,12 +30,14 @@
 			1
         </load-on-startup>
 	</servlet>
+	
 	<servlet-mapping>
 		<servlet-name>dispatcherServlet</servlet-name>
 		<url-pattern>
-            /
+            /service
         </url-pattern>
 	</servlet-mapping>
+	
 	<filter>
 		<display-name>gzipFilter</display-name>
 		<filter-name>gzipFilter</filter-name>
@@ -45,13 +52,16 @@
 			<param-value>1024</param-value>
 		</init-param>
 	</filter>
+	
 	<filter-mapping>
 		<filter-name>gzipFilter</filter-name>
 		<servlet-name>dispatcherServlet</servlet-name>
 	</filter-mapping>
+	
 	<welcome-file-list>
 		<welcome-file>
             index.html
         </welcome-file>
 	</welcome-file-list>
+	
 </web-app>

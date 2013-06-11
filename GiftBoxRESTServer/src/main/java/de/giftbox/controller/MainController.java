@@ -12,7 +12,7 @@ public class MainController {
 	private static final Logger log = LoggerFactory
 			.getLogger(MainController.class);
 
-	@RequestMapping(value = { "/", "index.html" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/home" }, method = RequestMethod.GET)
 	public String home() {
 		log.debug("Giftbox Server Home");
 		return "home";
