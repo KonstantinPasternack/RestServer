@@ -1,67 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-	version="2.5">
-	
-    <display-name>giftbox</display-name>
-    
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>
-            /WEB-INF/spring/root-context.xml
-        </param-value>
-	</context-param>
-	
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-	
-	<servlet>
-		<servlet-name>dispatcherServlet</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>
-                /WEB-INF/spring/dispatcherServlet/servlet-context.xml
-            </param-value>
-		</init-param>
-		<load-on-startup>
-			1
-        </load-on-startup>
-	</servlet>
-	
-	<servlet-mapping>
-		<servlet-name>dispatcherServlet</servlet-name>
-		<url-pattern>
-            /service
-        </url-pattern>
-	</servlet-mapping>
-	
-	<filter>
-		<display-name>gzipFilter</display-name>
-		<filter-name>gzipFilter</filter-name>
-		<filter-class>
-			de.giftbox.gzip.GzipFilter</filter-class>
-		<init-param>
-			<param-name>debug</param-name>
-			<param-value>true</param-value>
-		</init-param>
-		<init-param>
-			<param-name>compressionThreshold</param-name>
-			<param-value>1024</param-value>
-		</init-param>
-	</filter>
-	
-	<filter-mapping>
-		<filter-name>gzipFilter</filter-name>
-		<servlet-name>dispatcherServlet</servlet-name>
-	</filter-mapping>
-	
-	<welcome-file-list>
-		<welcome-file>
-            index.html
-        </welcome-file>
-	</welcome-file-list>
-	
-</web-app>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>GiftBox</display-name>
+  <servlet>
+    <servlet-name>webservlet</servlet-name>
+    <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+    <init-param>
+      <param-name>com.sun.jersey.config.property.packages</param-name>
+      <param-value>de.eb.social.activity.planer.rest</param-value>
+    </init-param>
+    	<init-param>
+		<param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+		<param-value>true</param-value>
+	</init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Social Activity Planer</servlet-name>
+    <url-pattern>/rest/*</url-pattern>
+  </servlet-mapping>
+</web-app> 
