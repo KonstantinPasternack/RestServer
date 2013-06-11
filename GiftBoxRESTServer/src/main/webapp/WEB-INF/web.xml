@@ -6,7 +6,7 @@
     <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
     <init-param>
       <param-name>com.sun.jersey.config.property.packages</param-name>
-      <param-value>de.eb.social.activity.planer.rest</param-value>
+      <param-value>de.giftbox.rest</param-value>
     </init-param>
     	<init-param>
 		<param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
@@ -15,7 +15,7 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Social Activity Planer</servlet-name>
+    <servlet-name>webservlet</servlet-name>
     <url-pattern>/rest/*</url-pattern>
   </servlet-mapping>
 </web-app> 

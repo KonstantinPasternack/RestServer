@@ -6,8 +6,7 @@ import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-
-import org.springframework.http.MediaType;
+import javax.ws.rs.core.MediaType;
 
 import de.giftbox.domain.Geschenk;
 import de.giftbox.domain.GeschenkService;
@@ -18,7 +17,7 @@ public class GeschenkRessource {
 	GeschenkService gs = new GeschenkService();
 
 	@GET
-	// @Produces(MediaType.APPLICATION_JSON);
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<Geschenk> getAllGeschenke() {
 
 		List<Geschenk> geschenkList = new ArrayList<Geschenk>();
@@ -29,7 +28,7 @@ public class GeschenkRessource {
 
 	@GET
 	@Path("/get")
-//	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Geschenk getGeschenk() {
 		Geschenk g = new Geschenk("TestGeschenk");
 
