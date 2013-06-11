@@ -18,9 +18,9 @@ import de.giftbox.domain.Benutzer;
 @Controller
 @RequestMapping("/benutzer/*")
 public class BenutzerController {
-	
+
 	BenutzerDAO benutzerDao;
-	
+
 	private static final Logger log = LoggerFactory
 			.getLogger(MainController.class);
 
@@ -36,22 +36,23 @@ public class BenutzerController {
 		log.debug("Benutzer retrieved");
 		return "\"OK\"";
 	}
-	
+
 	@RequestMapping(value = "testpost/{name}", method = RequestMethod.GET)
-	public @ResponseBody String testPost(@PathVariable(value="name") String name){
+	public @ResponseBody
+	String testPost(@PathVariable(value = "name") String name) {
 		log.info("testing Post to DB");
 		Boolean geklappt = false;
 		Benutzer benutzer = new Benutzer(name);
-		try{
-		benutzerDao.saveBenutzer(benutzer);
-		} catch (Exception ex){
+		try {
+			benutzerDao.saveBenutzer(benutzer);
+		} catch (Exception ex) {
 			ex.printStackTrace();
 			geklappt = false;
 		}
 		geklappt = true;
-		
+
 		return geklappt.toString();
-		
+
 	}
 
 	@RequestMapping(value = "fetchbenutzer", method = RequestMethod.GET, headers = "Accept=application/json")
@@ -65,5 +66,9 @@ public class BenutzerController {
 	private List<Benutzer> getAllBenutzer() {
 		List<Benutzer> listBenutzer = new ArrayList<>();
 		return listBenutzer;
-	}	
+	}
+
+	public void setBenutzerDAO(BenutzerDAO benutzerDao) {
+		this.benutzerDao = benutzerDao;
+	}
 }
