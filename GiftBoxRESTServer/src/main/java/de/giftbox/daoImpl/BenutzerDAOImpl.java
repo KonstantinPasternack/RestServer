@@ -26,10 +26,11 @@ public class BenutzerDAOImpl implements BenutzerDAO {
 	}
 
 	@SuppressWarnings("unchecked")
+	@Transactional
 	public List<Benutzer> listBenutzer() {
 		Session session = sessionFactory.getCurrentSession();
 		Criteria criteria = session.createCriteria(Benutzer.class);
-		criteria.add(Restrictions.eq("name", "blabla"));
+//		criteria.add(Restrictions.eq("name", "blabla"));
 		return criteria.list();
 	}
 

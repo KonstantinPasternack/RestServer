@@ -65,9 +65,10 @@ public class BenutzerController {
 		return getAllBenutzer();
 	}
 
-	// TODO
-	private List<Benutzer> getAllBenutzer() {
-		List<Benutzer> listBenutzer = new ArrayList<>();
+	@RequestMapping(value = "all", method = RequestMethod.GET)
+	private @ResponseBody List<Benutzer> getAllBenutzer() {
+		log.debug("get all benutzer!");
+		List<Benutzer> listBenutzer = benutzerDao.listBenutzer();
 		return listBenutzer;
 	}
 
