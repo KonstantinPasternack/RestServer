@@ -45,11 +45,14 @@ public class BenutzerController {
 		Benutzer benutzer = new Benutzer(name);
 		try {
 			benutzerDao.saveBenutzer(benutzer);
+			geklappt = true;
 		} catch (Exception ex) {
+			
 			ex.printStackTrace();
 			geklappt = false;
+			log.error("saveBenutzer hat nicht funktioniert");
+			
 		}
-		geklappt = true;
 
 		return geklappt.toString();
 
