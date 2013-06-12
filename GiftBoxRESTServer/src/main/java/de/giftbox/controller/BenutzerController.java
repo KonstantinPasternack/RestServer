@@ -1,6 +1,5 @@
 package de.giftbox.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -24,11 +23,12 @@ public class BenutzerController {
 	private static final Logger log = LoggerFactory
 			.getLogger(MainController.class);
 
-	@RequestMapping(value = { "/", "benutzer.html" }, method = RequestMethod.GET)
-	public String benuter() {
-		log.debug("Giftbox Server Benutzer");
-		return "benutzer";
-	}
+	// @RequestMapping(value = { "/", "benutzer.html" }, method =
+	// RequestMethod.GET)
+	// public String benutzer() {
+	// log.debug("Giftbox Server Benutzer");
+	// return "benutzer";
+	// }
 
 	@RequestMapping(value = "postbenutzer", method = RequestMethod.POST, headers = "Content-Type=application/json")
 	public @ResponseBody
@@ -47,11 +47,11 @@ public class BenutzerController {
 			benutzerDao.saveBenutzer(benutzer);
 			geklappt = true;
 		} catch (Exception ex) {
-			
+
 			ex.printStackTrace();
 			geklappt = false;
 			log.error("saveBenutzer hat nicht funktioniert");
-			
+
 		}
 
 		return geklappt.toString();
@@ -66,10 +66,20 @@ public class BenutzerController {
 	}
 
 	@RequestMapping(value = "all", method = RequestMethod.GET)
-	private @ResponseBody List<Benutzer> getAllBenutzer() {
+	private @ResponseBody
+	List<Benutzer> getAllBenutzer() {
 		log.debug("get all benutzer!");
 		List<Benutzer> listBenutzer = benutzerDao.listBenutzer();
 		return listBenutzer;
+	}
+
+	@RequestMapping(value = "id/{id}", method = RequestMethod.GET)
+	public @ResponseBody
+	Benutzer findBenutzerById(@PathVariable(value = "id") Integer id) {
+		log.debug("Find Benutzer by " + id + "!");
+		Benutzer benutzer = new Benutzer();
+		benutzer.setIdBenutzer(benutzerDao.findBenutzerById(id));
+		return benutzer;
 	}
 
 	public void setBenutzerDAO(BenutzerDAO benutzerDao) {
