@@ -2,33 +2,43 @@ package de.giftbox.daoImpl;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.orm.hibernate3.HibernateTemplate;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+import de.giftbox.dao.BenutzerDAO;
 import de.giftbox.dao.GeschenkDAO;
+import de.giftbox.domain.Benutzer;
 import de.giftbox.domain.Geschenk;
 
+@Repository
 public class GeschenkDAOImpl implements GeschenkDAO {
 
-	private HibernateTemplate hibernateTemplate;
+	@Autowired	
+	SessionFactory sessionFactory;
 
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.hibernateTemplate = new HibernateTemplate(sessionFactory);
-	}
-
-	@Override
+	@Transactional
 	public void saveGeschenk(Geschenk geschenk) {
-		hibernateTemplate.saveOrUpdate(geschenk);
+		sessionFactory.getCurrentSession().saveOrUpdate(geschenk);
+		//		hibernateTemplate.saveOrUpdate(benutzer);
 	}
 
-	@Override
-	public void deleteGeschenk(Geschenk geschenk) {
-		hibernateTemplate.delete(geschenk);
-	}
-
-	@Override
 	@SuppressWarnings("unchecked")
+	@Transactional
 	public List<Geschenk> listGeschenk() {
-		return hibernateTemplate.find("from Geschenk");
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(Geschenk.class);
+//		criteria.add(Restrictions.eq("name", "blabla"));
+		return criteria.list();
 	}
+
+	public void deleteGeschenk(Geschenk geschenk) {
+		sessionFactory.getCurrentSession().delete(geschenk);
+		
+	}
+
 }
