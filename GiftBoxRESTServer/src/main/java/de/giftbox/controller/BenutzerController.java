@@ -1,6 +1,7 @@
 package de.giftbox.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,57 +14,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import de.giftbox.dao.BenutzerDAO;
 import de.giftbox.domain.Benutzer;
+import de.giftbox.helper.JSONStringToMap;
 
 @Controller
 @RequestMapping("/benutzer/*")
 public class BenutzerController {
 
 	BenutzerDAO benutzerDao;
+	JSONStringToMap jsonStringToMap;
 
 	private static final Logger log = LoggerFactory
 			.getLogger(MainController.class);
-
-	// @RequestMapping(value = { "/", "benutzer.html" }, method =
-	// RequestMethod.GET)
-	// public String benutzer() {
-	// log.debug("Giftbox Server Benutzer");
-	// return "benutzer";
-	// }
-
-	@RequestMapping(value = "postbenutzer", method = RequestMethod.POST, headers = "Content-Type=application/json")
-	public @ResponseBody
-	String postBenutzerJson(@RequestBody Benutzer benutzer) {
-		log.debug("Benutzer retrieved");
-		return "\"OK\"";
-	}
-
-	@RequestMapping(value = "testpost/{name}", method = RequestMethod.GET)
-	public @ResponseBody
-	String testPost(@PathVariable(value = "name") String name) {
-		log.info("testing Post to DB");
-		Boolean geklappt = false;
-		Benutzer benutzer = new Benutzer(name);
-		try {
-			benutzerDao.saveBenutzer(benutzer);
-			geklappt = true;
-		} catch (Exception ex) {
-
-			ex.printStackTrace();
-			geklappt = false;
-			log.error("saveBenutzer hat nicht funktioniert");
-
-		}
-
-		return geklappt.toString();
-
-	}
-
-	@RequestMapping(value = "fetchbenutzer", method = RequestMethod.GET, headers = "Accept=application/json")
-	public @ResponseBody
-	List<Benutzer> fetchBenutzerJson() {
-		log.debug("Fetching JSON benutzer");
-		return getAllBenutzer();
-	}
 
 	@RequestMapping(value = "all", method = RequestMethod.GET)
 	private @ResponseBody
@@ -76,10 +37,52 @@ public class BenutzerController {
 	@RequestMapping(value = "id/{id}", method = RequestMethod.GET)
 	public @ResponseBody
 	Benutzer findBenutzerById(@PathVariable(value = "id") Integer id) {
-		log.debug("Find Benutzer by " + id + "!");
+		log.debug("Find Benutzer by ID " + id + "!");
 		Benutzer benutzer = new Benutzer();
-		benutzer.setIdBenutzer(benutzerDao.findBenutzerById(id));
+		benutzer = benutzerDao.findBenutzerById(id);
+		// log.debug("Test: " + benutzer.getIdBenutzer().toString());
 		return benutzer;
+	}
+
+	@RequestMapping(value = "username/{username}", method = RequestMethod.GET)
+	public @ResponseBody
+	Benutzer findBenutzerByUsername(
+			@PathVariable(value = "name") String username) {
+		log.debug("Find Benutzer by Name " + username + "!");
+		Benutzer benutzer = new Benutzer();
+		benutzer = benutzerDao.findBenutzerByUsername(username);
+		return benutzer;
+	}
+
+	@RequestMapping(value = "new", method = RequestMethod.POST)
+	public @ResponseBody
+	String postGeschenk(@RequestBody String json) {
+		Benutzer b = new Benutzer();
+		log.debug(json.toString());
+
+		Map<String, Object> jsonMap = jsonStringToMap.convertToMap(json);
+
+		b.setUsername(jsonMap.get("username").toString());
+		b.setPasswort(jsonMap.get("passwort").toString());
+		b.setEmail(jsonMap.get("email").toString());
+		b.setKommentar(jsonMap.get("kommentar").toString());
+
+		log.info("testing Post \"Benutzer\":" + b.toString() + " to DB");
+		Boolean geklappt = false;
+		try {
+			benutzerDao.saveBenutzer(b);
+			geklappt = true;
+			log.info("neuen Benutzer in die DB geschrieben!");
+		} catch (Exception ex) {
+
+			ex.printStackTrace();
+			geklappt = false;
+			log.error("saveBenutzer hat nicht funktioniert");
+
+		}
+
+		return geklappt.toString();
+
 	}
 
 	public void setBenutzerDAO(BenutzerDAO benutzerDao) {

@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,20 +19,24 @@ public class BenutzerDAOImpl implements BenutzerDAO {
 	@Autowired
 	SessionFactory sessionFactory;
 
+	// Methode, die einen Benutzer speichert
 	@Transactional
 	public void saveBenutzer(Benutzer benutzer) {
 		sessionFactory.getCurrentSession().saveOrUpdate(benutzer);
 		// hibernateTemplate.saveOrUpdate(benutzer);
 	}
 
+	// Methode, die einen Benutzer über eine ID zurückliefert
 	@Transactional
-	public Integer findBenutzerById(Integer id) {
-		Benutzer b =  (Benutzer) sessionFactory.getCurrentSession().get(
+	public Benutzer findBenutzerById(Integer id) {
+		Benutzer b = (Benutzer) sessionFactory.getCurrentSession().get(
 				Benutzer.class, id);
-		
-		return b.getIdBenutzer();
+		System.out.println("Benutzer zu ID " + id);
+
+		return b;
 	}
 
+	// Methode, die eine Liste von allen Benutzer zurückliefert
 	@SuppressWarnings("unchecked")
 	@Transactional
 	public List<Benutzer> listBenutzer() {
@@ -39,6 +44,19 @@ public class BenutzerDAOImpl implements BenutzerDAO {
 		Criteria criteria = session.createCriteria(Benutzer.class);
 		// criteria.add(Restrictions.eq("name", "blabla"));
 		return criteria.list();
+		//TODO Methode umschreiben
+	}
+
+	// Methode, die einen Benutzer über einen Usernamen zurückliefert
+	@Transactional
+	public Benutzer findBenutzerByUsername(String username) {
+		Session session = sessionFactory.getCurrentSession();
+//		Benutzer b = (Benutzer) sessionFactory.getCurrentSession().get(
+//				Benutzer.class, username);
+		Criteria criteria = session.createCriteria(Benutzer.class);
+		 criteria.add(Restrictions.eq("username", username));
+
+		return (Benutzer) criteria.list().get(0);
 	}
 
 }
