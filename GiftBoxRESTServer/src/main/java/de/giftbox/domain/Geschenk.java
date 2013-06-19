@@ -238,4 +238,14 @@ public class Geschenk implements java.io.Serializable {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Geschenk [idGeschenk=" + idGeschenk + ", bezeichnung="
+				+ bezeichnung + ", kategorie=" + kategorie + ", preis=" + preis
+				+ ", ort=" + ort + ", link=" + link + ", kommentar="
+				+ kommentar + ", geschenklisteHasGeschenke="
+				+ geschenklisteHasGeschenke + ", bewertungen=" + bewertungen
+				+ "]";
+	}
+
 }

@@ -1,9 +1,8 @@
 package de.giftbox.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -12,7 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import de.giftbox.dao.BenutzerDAO;
+import com.google.gson.Gson;
+
 import de.giftbox.dao.GeschenkDAO;
 import de.giftbox.domain.Geschenk;
 import de.giftbox.helper.JSONStringToMap;
@@ -46,13 +46,18 @@ public class GeschenkController {
 	String postGeschenk(@RequestBody String json) {
 		Geschenk geschenk = new Geschenk();
 		log.debug(json.toString());
-
-		Map<String, Object> jsonMap = jsonStringToMap.convertToMap(json);
 		
-		geschenk.setBezeichnung(jsonMap.get("Bezeichnung").toString());
-		geschenk.setPreis(Double.parseDouble(jsonMap.get("Preis").toString()));
-		geschenk.setOrt(jsonMap.get("Ort").toString());
-		geschenk.setLink(jsonMap.get("Link").toString());
+		Gson gson = new Gson();
+		geschenk = gson.fromJson(json, Geschenk.class);
+		
+		log.debug(geschenk.toString());
+		
+//		Map<String, Object> jsonMap = jsonStringToMap.convertToMap(json);
+//		
+//		geschenk.setBezeichnung(jsonMap.get("Bezeichnung").toString());
+//		geschenk.setPreis(Double.parseDouble(jsonMap.get("Preis").toString()));
+//		geschenk.setOrt(jsonMap.get("Ort").toString());
+//		geschenk.setLink(jsonMap.get("Link").toString());
 
 		log.info("testing Post \"Geschenk\":" + geschenk.toString() + " to DB");
 		Boolean geklappt = false;
