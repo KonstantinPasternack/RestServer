@@ -37,12 +37,12 @@ public class BenutzerController {
 		return "\"OK\"";
 	}
 
-	@RequestMapping(value = "testpost/{name}", method = RequestMethod.GET)
+	@RequestMapping(value = "testpost/{username}", method = RequestMethod.GET)
 	public @ResponseBody
-	String testPost(@PathVariable(value = "name") String name) {
+	String testPost(@PathVariable(value = "username") String username) {
 		log.info("testing Post to DB");
 		Boolean geklappt = false;
-		Benutzer benutzer = new Benutzer(name);
+		Benutzer benutzer = new Benutzer(username);
 		try {
 			benutzerDao.saveBenutzer(benutzer);
 			geklappt = true;
@@ -76,9 +76,20 @@ public class BenutzerController {
 	@RequestMapping(value = "id/{id}", method = RequestMethod.GET)
 	public @ResponseBody
 	Benutzer findBenutzerById(@PathVariable(value = "id") Integer id) {
-		log.debug("Find Benutzer by " + id + "!");
+		log.debug("Find Benutzer by ID " + id + "!");
 		Benutzer benutzer = new Benutzer();
-		benutzer.setIdBenutzer(benutzerDao.findBenutzerById(id));
+		benutzer = benutzerDao.findBenutzerById(id);
+//		log.debug("Test: " + benutzer.getIdBenutzer().toString());
+		return benutzer;
+	}
+
+	@RequestMapping(value = "username/{username}", method = RequestMethod.GET)
+	public @ResponseBody
+	Benutzer findBenutzerByUsername(
+			@PathVariable(value = "name") String username) {
+		log.debug("Find Benutzer by Name " + username + "!");
+		Benutzer benutzer = new Benutzer();
+		benutzer = benutzerDao.findBenutzerByUsername(username);
 		return benutzer;
 	}
 

@@ -10,5 +10,7 @@ public interface BenutzerDAO {
 
 	public List<Benutzer> listBenutzer();
 
-	public Integer findBenutzerById(Integer id);
+	public Benutzer findBenutzerById(Integer id);
+
+	public Benutzer findBenutzerByUsername(String name);
 }
