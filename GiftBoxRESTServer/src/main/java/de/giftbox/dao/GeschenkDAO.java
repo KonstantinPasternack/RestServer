@@ -12,4 +12,8 @@ public interface GeschenkDAO {
 
 	public List<Geschenk> listGeschenk();
 
+	public Geschenk getGeschenkById(Integer id);
+	
+	public Integer getLastAddedGeschenk();
+
 }

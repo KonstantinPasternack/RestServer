@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,16 +35,9 @@ public class GeschenkController {
 		return "geschenk";
 	}
 
-	@RequestMapping(value = "postgeschenk", method = RequestMethod.POST, headers = "Content-Type=application/json")
-	public @ResponseBody
-	String postBenutzerJson(@RequestBody Geschenk geschenk) {
-		log.debug("Geschenk retrieved");
-		return "\"OK\"";
-	}
-
 	@RequestMapping(value = "new", method = RequestMethod.POST/*, consumes = "application/json"*/)
 	public @ResponseBody
-	String postGeschenk(@RequestBody String json) {
+	Integer postGeschenk(@RequestBody String json) {
 		Geschenk geschenk = new Geschenk();
 		log.debug(json.toString());
 		
@@ -60,28 +54,36 @@ public class GeschenkController {
 //		geschenk.setLink(jsonMap.get("Link").toString());
 
 		log.info("testing Post \"Geschenk\":" + geschenk.toString() + " to DB");
-		Boolean geklappt = false;
+		Integer lastAdded = 0;
 		try {
 			geschenkDao.saveGeschenk(geschenk);
-			geklappt = true;
+			
 			log.info("neues Geschenk in die DB geschrieben!");
+			
+			lastAdded = geschenkDao.getLastAddedGeschenk();
+			log.info("Last added Geschenk has ID: " + lastAdded);
 		} catch (Exception ex) {
 
 			ex.printStackTrace();
-			geklappt = false;
 			log.error("saveGeschenk hat nicht funktioniert");
 
 		}
 
-		return geklappt.toString();
+		return lastAdded;
 
 	}
 
-	@RequestMapping(value = "fetchgeschenk", method = RequestMethod.GET, headers = "application/json")
+	@RequestMapping(value = "get/{id}", method = RequestMethod.GET)
 	public @ResponseBody
-	List<Geschenk> fetchBenutzerJson() {
-		log.debug("Fetching JSON geschenk");
-		return getAllGeschenk();
+	String getGeschenkById(@PathVariable(value="id") Integer id) {
+		
+		
+		Geschenk geschenk = geschenkDao.getGeschenkById(id);
+		
+		Gson gson = new Gson();
+		String json = gson.toJson(geschenk, Geschenk.class);
+		
+		return json;
 	}
 
 	@RequestMapping(value = "all", method = RequestMethod.GET)
