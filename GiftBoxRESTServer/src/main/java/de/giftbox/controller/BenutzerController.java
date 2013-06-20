@@ -1,7 +1,6 @@
 package de.giftbox.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,15 +36,15 @@ public class BenutzerController {
 		return listBenutzer;
 	}
 
-	@RequestMapping(value = "id/{id}", method = RequestMethod.GET)
-	public @ResponseBody
-	Benutzer findBenutzerById(@PathVariable(value = "id") Integer id) {
-		log.debug("Find Benutzer by ID " + id + "!");
-		Benutzer benutzer = new Benutzer();
-		benutzer = benutzerDao.findBenutzerById(id);
-		// log.debug("Test: " + benutzer.getIdBenutzer().toString());
-		return benutzer;
-	}
+//	@RequestMapping(value = "id/{id}", method = RequestMethod.GET)
+//	public @ResponseBody
+//	Benutzer findBenutzerById(@PathVariable(value = "id") Integer id) {
+//		log.debug("Find Benutzer by ID " + id + "!");
+//		Benutzer benutzer = new Benutzer();
+//		benutzer = benutzerDao.findBenutzerById(id);
+//		// log.debug("Test: " + benutzer.getIdBenutzer().toString());
+//		return benutzer;
+//	}
 
 	@RequestMapping(value = "username/{username}", method = RequestMethod.GET)
 	public @ResponseBody
@@ -65,14 +64,14 @@ public class BenutzerController {
 
 		Gson gson = new Gson();
 		b = gson.fromJson(json, Benutzer.class);
-		
+
 		log.debug(b.toString());
-//		Map<String, Object> jsonMap = jsonStringToMap.convertToMap(json);
-//
-//		b.setUsername(jsonMap.get("username").toString());
-//		b.setPasswort(jsonMap.get("passwort").toString());
-//		b.setKommentar(jsonMap.get("kommentar").toString());
-//		b.setEmail(jsonMap.get("email").toString());
+		// Map<String, Object> jsonMap = jsonStringToMap.convertToMap(json);
+		//
+		// b.setUsername(jsonMap.get("username").toString());
+		// b.setPasswort(jsonMap.get("passwort").toString());
+		// b.setKommentar(jsonMap.get("kommentar").toString());
+		// b.setEmail(jsonMap.get("email").toString());
 
 		log.info("testing Post \"Benutzer\":" + b.toString() + " to DB");
 		Boolean geklappt = false;
@@ -90,6 +89,18 @@ public class BenutzerController {
 
 		return geklappt.toString();
 
+	}
+
+	@RequestMapping(value = "get/{id}", method = RequestMethod.GET)
+	public @ResponseBody
+	String getBenutzerById(@PathVariable(value = "id") Integer id) {
+
+		Benutzer b = benutzerDao.getBenutzerById(id);
+
+		Gson gson = new Gson();
+		String json = gson.toJson(b, Benutzer.class);
+
+		return json;
 	}
 
 	public void setBenutzerDAO(BenutzerDAO benutzerDao) {
