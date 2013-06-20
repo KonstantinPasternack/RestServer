@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+
 import de.giftbox.dao.BenutzerDAO;
 import de.giftbox.domain.Benutzer;
+import de.giftbox.domain.Geschenk;
 import de.giftbox.helper.JSONStringToMap;
 
 @Controller
@@ -56,16 +59,20 @@ public class BenutzerController {
 
 	@RequestMapping(value = "new", method = RequestMethod.POST)
 	public @ResponseBody
-	String postGeschenk(@RequestBody String json) {
+	String postBenutzer(@RequestBody String json) {
 		Benutzer b = new Benutzer();
 		log.debug(json.toString());
 
-		Map<String, Object> jsonMap = jsonStringToMap.convertToMap(json);
-
-		b.setUsername(jsonMap.get("username").toString());
-		b.setPasswort(jsonMap.get("passwort").toString());
-		b.setEmail(jsonMap.get("email").toString());
-		b.setKommentar(jsonMap.get("kommentar").toString());
+		Gson gson = new Gson();
+		b = gson.fromJson(json, Benutzer.class);
+		
+		log.debug(b.toString());
+//		Map<String, Object> jsonMap = jsonStringToMap.convertToMap(json);
+//
+//		b.setUsername(jsonMap.get("username").toString());
+//		b.setPasswort(jsonMap.get("passwort").toString());
+//		b.setKommentar(jsonMap.get("kommentar").toString());
+//		b.setEmail(jsonMap.get("email").toString());
 
 		log.info("testing Post \"Benutzer\":" + b.toString() + " to DB");
 		Boolean geklappt = false;
