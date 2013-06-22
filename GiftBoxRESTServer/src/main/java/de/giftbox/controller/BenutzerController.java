@@ -15,7 +15,6 @@ import com.google.gson.Gson;
 
 import de.giftbox.dao.BenutzerDAO;
 import de.giftbox.domain.Benutzer;
-import de.giftbox.domain.Geschenk;
 import de.giftbox.helper.JSONStringToMap;
 
 @Controller
@@ -28,6 +27,7 @@ public class BenutzerController {
 	private static final Logger log = LoggerFactory
 			.getLogger(MainController.class);
 
+	//Methode, die alle Benutzer zurückgibt
 	@RequestMapping(value = "all", method = RequestMethod.GET)
 	private @ResponseBody
 	List<Benutzer> getAllBenutzer() {
@@ -36,16 +36,7 @@ public class BenutzerController {
 		return listBenutzer;
 	}
 
-//	@RequestMapping(value = "id/{id}", method = RequestMethod.GET)
-//	public @ResponseBody
-//	Benutzer findBenutzerById(@PathVariable(value = "id") Integer id) {
-//		log.debug("Find Benutzer by ID " + id + "!");
-//		Benutzer benutzer = new Benutzer();
-//		benutzer = benutzerDao.findBenutzerById(id);
-//		// log.debug("Test: " + benutzer.getIdBenutzer().toString());
-//		return benutzer;
-//	}
-
+	//Methode, die einen Benutzer über Namen zurückliefert
 	@RequestMapping(value = "username/{username}", method = RequestMethod.GET)
 	public @ResponseBody
 	Benutzer findBenutzerByUsername(
@@ -56,6 +47,7 @@ public class BenutzerController {
 		return benutzer;
 	}
 
+	//Methode, die einen Benutzer speichert
 	@RequestMapping(value = "new", method = RequestMethod.POST)
 	public @ResponseBody
 	String postBenutzer(@RequestBody String json) {
@@ -66,12 +58,6 @@ public class BenutzerController {
 		b = gson.fromJson(json, Benutzer.class);
 
 		log.debug(b.toString());
-		// Map<String, Object> jsonMap = jsonStringToMap.convertToMap(json);
-		//
-		// b.setUsername(jsonMap.get("username").toString());
-		// b.setPasswort(jsonMap.get("passwort").toString());
-		// b.setKommentar(jsonMap.get("kommentar").toString());
-		// b.setEmail(jsonMap.get("email").toString());
 
 		log.info("testing Post \"Benutzer\":" + b.toString() + " to DB");
 		Boolean geklappt = false;
@@ -91,6 +77,7 @@ public class BenutzerController {
 
 	}
 
+	//Methode, die einen Benutzer über ID zurückliefert
 	@RequestMapping(value = "get/{id}", method = RequestMethod.GET)
 	public @ResponseBody
 	String getBenutzerById(@PathVariable(value = "id") Integer id) {
@@ -105,5 +92,9 @@ public class BenutzerController {
 
 	public void setBenutzerDAO(BenutzerDAO benutzerDao) {
 		this.benutzerDao = benutzerDao;
+	}
+	
+	public void setJSONStringToMap(JSONStringToMap jsonStringToMap) {
+		this.jsonStringToMap = jsonStringToMap;
 	}
 }
