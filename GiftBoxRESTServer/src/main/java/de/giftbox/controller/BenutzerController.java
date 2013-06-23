@@ -27,7 +27,7 @@ public class BenutzerController {
 	private static final Logger log = LoggerFactory
 			.getLogger(MainController.class);
 
-	//Methode, die alle Benutzer zurückgibt
+	// Methode, die alle Benutzer zurückgibt
 	@RequestMapping(value = "all", method = RequestMethod.GET)
 	private @ResponseBody
 	List<Benutzer> getAllBenutzer() {
@@ -36,18 +36,7 @@ public class BenutzerController {
 		return listBenutzer;
 	}
 
-	//Methode, die einen Benutzer über Namen zurückliefert
-	@RequestMapping(value = "username/{username}", method = RequestMethod.GET)
-	public @ResponseBody
-	Benutzer findBenutzerByUsername(
-			@PathVariable(value = "name") String username) {
-		log.debug("Find Benutzer by Name " + username + "!");
-		Benutzer benutzer = new Benutzer();
-		benutzer = benutzerDao.findBenutzerByUsername(username);
-		return benutzer;
-	}
-
-	//Methode, die einen Benutzer speichert
+	// Methode, die einen Benutzer speichert
 	@RequestMapping(value = "new", method = RequestMethod.POST)
 	public @ResponseBody
 	String postBenutzer(@RequestBody String json) {
@@ -77,7 +66,7 @@ public class BenutzerController {
 
 	}
 
-	//Methode, die einen Benutzer über ID zurückliefert
+	// Methode, die einen Benutzer über ID zurückliefert
 	@RequestMapping(value = "get/{id}", method = RequestMethod.GET)
 	public @ResponseBody
 	String getBenutzerById(@PathVariable(value = "id") Integer id) {
@@ -90,10 +79,23 @@ public class BenutzerController {
 		return json;
 	}
 
+	// Methode, die einen Benutzer über ID zurückliefert
+	@RequestMapping(value = "username/{name}", method = RequestMethod.GET)
+	public @ResponseBody
+	String getBenutzerByName(@PathVariable(value = "name") String name) {
+
+		Benutzer b = benutzerDao.findBenutzerByUsername(name);
+
+		Gson gson = new Gson();
+		String json = gson.toJson(b, Benutzer.class);
+
+		return json;
+	}
+
 	public void setBenutzerDAO(BenutzerDAO benutzerDao) {
 		this.benutzerDao = benutzerDao;
 	}
-	
+
 	public void setJSONStringToMap(JSONStringToMap jsonStringToMap) {
 		this.jsonStringToMap = jsonStringToMap;
 	}

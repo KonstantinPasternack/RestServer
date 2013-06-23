@@ -14,4 +14,5 @@ public interface BenutzerDAO {
 
 	public Benutzer findBenutzerByUsername(String name);
 
+
 }
