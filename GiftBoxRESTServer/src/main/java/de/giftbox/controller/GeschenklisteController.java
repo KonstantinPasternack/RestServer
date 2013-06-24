@@ -30,6 +30,14 @@ public class GeschenklisteController {
 		List<Geschenkliste> listGeschenkliste = geschenklisteDao.listGeschenkliste();
 		return listGeschenkliste;
 	}
+
+	public void setGeschenklisteDao(GeschenklisteDAO geschenklisteDao) {
+		this.geschenklisteDao = geschenklisteDao;
+	}
+
+	public void setJsonStringToMap(JSONStringToMap jsonStringToMap) {
+		this.jsonStringToMap = jsonStringToMap;
+	}
 	
 	
 }
